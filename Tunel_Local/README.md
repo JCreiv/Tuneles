@@ -35,6 +35,8 @@ ssh -L 127.0.0.1:8000:<IP_PRIVADA>:8000 root@<IP_PUBLICA>
 
 ![](ANEXOS/Pasted%20image%2020250404193417.png)
 
+---
+
 Una vez seguidos los pasos desde nuestro host podremos ver el servidor http de nuestra maquina privada e incluso podríamos conectarnos a través de un RDP a nuestro host privado, para ello usaremos el escritorio remoto de windows y habra que instalar xrdp y xcf4 en nuestro vps privado
 
 ![](ANEXOS/Pasted%20image%2020250404204350.png)
