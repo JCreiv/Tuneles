@@ -40,3 +40,65 @@ ssh -L 127.0.0.1:8000:<IP_PRIVADA>:8000 root@<IP_PUBLICA>
 Una vez seguidos los pasos desde nuestro host podremos ver el servidor http de nuestra maquina privada e incluso podríamos conectarnos a través de un RDP a nuestro host privado, para ello usaremos el escritorio remoto de windows y habra que instalar xrdp y xcf4 en nuestro vps privado
 
 ![](ANEXOS/Pasted%20image%2020250404204350.png)
+
+# Instalación de Xfce4 y XRDP en un VPS para escaneos "anónimos"
+
+Este documento explica cómo instalar **Xfce4** y **XRDP** en un VPS para acceder de forma remota a un entorno de escritorio ligero.
+
+---
+
+## Instalación en Debian/Ubuntu
+
+1. **Actualizar los paquetes**
+    
+    ```bash
+    sudo apt update && sudo apt upgrade -y
+    ```
+    
+2. **Instalar Xfce4**
+    
+    ```bash
+    sudo apt install xfce4 xfce4-goodies -y
+    ```
+    
+3. **Instalar XRDP**
+    
+    ```bash
+    sudo apt install xrdp -y
+    ```
+    
+4. **Configurar XRDP para usar Xfce4**
+    
+    ```bash
+    echo "xfce4-session" > ~/.xsession
+    sudo systemctl restart xrdp
+    ```
+    
+5. **Habilitar XRDP en el arranque**
+    
+    ```bash
+    sudo systemctl enable xrdp
+    ```
+
+---
+
+## Auditorías de Páginas Externas sin Exponer la IP Pública
+
+Una vez configurado el acceso remoto a nuestro VPS con XRDP, podemos realizar auditorías de sistemas externos sin exponer nuestra IP pública. En este caso, he encontrado a través de Shodan un PLC expuesto que podríamos intentar atacar.
+
+### Procedimiento:
+
+1. **Buscar sistemas expuestos en Shodan**  
+   Utilizando Shodan, podemos localizar dispositivos expuestos, como PLCs.
+
+
+![](ANEXOS/Pasted%20image%2020250410125212.png)
+
+
+2. **Intentar atacar el PLC**  
+Con el PLC identificado, podríamos intentar explotar vulnerabilidades conocidas
+
+3. **Ver el contenido a través del RDP**  
+Gracias a nuestro acceso remoto al VPS mediante RDP, podemos visualizar el contenido del sistema atacado de forma segura y sin exponer nuestra IP pública.
+
+
